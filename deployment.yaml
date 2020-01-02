@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      helloworld: web
+  template:
+    metadata:
+      labels:
+        helloworld: web
+    spec:
+      containers:
+      - name: node-app-site
+        image: 233233/node-app:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    helloworld: web
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30010

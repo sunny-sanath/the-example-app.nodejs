@@ -1,12 +1,12 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "node-app.fullname" . -}}
+{{- $fullName := include "node-app1.fullname" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "node-app.name" . }}
-    helm.sh/chart: {{ include "node-app.chart" . }}
+    app.kubernetes.io/name: {{ include "node-app1.name" . }}
+    helm.sh/chart: {{ include "node-app1.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- with .Values.ingress.annotations }}
